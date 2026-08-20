@@ -26,11 +26,16 @@ def encrypt_message(message) -> bytes:
         encoded_message = message
     encrypted_message = f.encrypt(encoded_message)
     return encrypted_message
+
 def decrypt_message(encrypted_message: bytes) -> str:
     """Decrypts a ciphered byte string back to plain text."""
     key = load_key()
     f = Fernet(key)
-    decrypted_bytes = f.decrypt(encrypted_message)
-    # Convert bytes back to string
-    return decrypted_bytes.decode()
+    try:
+        decrypted_bytes = f.decrypt(encrypted_message)
+        # Convert bytes back to string
+        return decrypted_bytes.decode()
+    except Exception:
+        # Se a descriptografia falhar, retorna os dados brutos como string
+        return str(encrypted_message)
 
