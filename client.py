@@ -17,7 +17,7 @@ def getip():
 def connect():
     try:
         c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        c.connect(('45.157.16.196', 443))
+        c.connect(('45.157.16.196', 8080))
         return c
     except Exception as e:
         print(f"Error connecting t o server: {e}")
